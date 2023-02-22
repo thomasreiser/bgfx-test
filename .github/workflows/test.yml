@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout test code
+        uses: actions/checkout@v3
+  
+      - name: Checkout bgfx
+        uses: actions/checkout@v3
+        with:
+          repository: bkaradzic/bgfx
+          ref: 9d5b980f5c060e54cc30dec18500a5b54db00405
+          path: bgfx
+    
+      - name: Checkout bx
+        uses: actions/checkout@v3
+        with:
+          repository: bkaradzic/bx
+          ref: fa1411e4aa111c8b004c97660ab31ba1a5287835
+          path: bx
+      
+      - name: Checkout bimg
+        uses: actions/checkout@v3
+        with:
+          repository: bkaradzic/bimg
+          ref: 7afa2419254fd466c013a51bdeb0bee3022619c4
+          path: bimg
+
+      - name: Fetch dependencies
+        run: |
+          sudo apt install libgl-dev
+
+      - name: Build
+        run: |
+          (cd bgfx && ../bx/tools/bin/linux/genie --with-dynamic-runtime --with-examples --with-tools --os=linux --gcc=linux-gcc gmake)
+          make -C bgfx/bgfx/.build/projects/gmake-linux config=debug64 CXXFLAGS=-fPIC
