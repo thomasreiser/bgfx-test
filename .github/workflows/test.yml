@@ -41,7 +41,13 @@ jobs:
         run: |
           sudo apt install libgl-dev
 
-      - name: Build
+      - name: Build bgfx
         run: |
           (cd bgfx && ../bx/tools/bin/linux/genie --with-dynamic-runtime --with-examples --with-tools --os=linux --gcc=linux-gcc gmake)
           make -C bgfx/.build/projects/gmake-linux config=debug64 CXXFLAGS=-fPIC
+
+      - name: Build test
+        run: |
+          mkdir build
+          (cd build && cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja ..)
+          ninja -C build
