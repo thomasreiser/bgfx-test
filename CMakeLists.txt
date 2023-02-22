@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
+project(test
+        LANGUAGES CXX C)
+
 add_executable(${PROJECT_NAME}
     test.cpp
 )
@@ -23,10 +26,6 @@ target_link_libraries(${PROJECT_NAME}
     ${CMAKE_SOURCE_DIR}/bgfx/.build/libbimg_encodeDebug.a
     dl
 )
-
-if(WIN32 AND HCH_LIBHARDCOREHEX_SHARED)
-    target_link_libraries(${PROJECT_NAME} hardcoreglue)
-endif()
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
