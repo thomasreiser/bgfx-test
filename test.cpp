@@ -1,12 +1,13 @@
 #include <bx/allocator.h>
 #include <bimg/encode.h>
+#include <cstring>
 
 static inline bx::AllocatorI* getDefaultAllocator() {
   static bx::DefaultAllocator allocator;
   return &allocator;
 }
 
-int main(int argc, const char** argv) {
+int main() {
     bimg::ImageContainer* src = bimg::imageAlloc(getDefaultAllocator(),
         bimg::TextureFormat::BGRA8, 1, 1, 1, 1, false, false);
     memcpy(src->m_data, "\xff\x00\x00\xff", 4);
