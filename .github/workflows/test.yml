@@ -39,7 +39,7 @@ jobs:
 
       - name: Fetch dependencies
         run: |
-          sudo apt install libgl-dev
+          sudo apt install libgl-dev ninja-build
 
       - name: Build bgfx
         run: |
