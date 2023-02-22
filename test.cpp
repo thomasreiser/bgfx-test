@@ -1,3 +1,4 @@
+#include <bx/allocator.h>
 #include <bimg/encode.h>
 
 static inline bx::AllocatorI* getDefaultAllocator() {
