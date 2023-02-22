@@ -15,15 +15,14 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_${CMAKE_CXX_STANDARD})
 
 target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:Clang>:-Wall -Wextra -Wc++20-compat-pedantic>
-    $<$<CXX_COMPILER_ID:GNU>:-Wall -Wextra -pedantic>
-    $<$<CXX_COMPILER_ID:MSVC>:/W3 /wd4251>)
+    $<$<CXX_COMPILER_ID:GNU>:-Wall -Wextra -pedantic>)
 
 target_link_libraries(${PROJECT_NAME}
-    ${CMAKE_SOURCE_DIR}/bgfx/.build/libbgfxDebug.a
-    ${CMAKE_SOURCE_DIR}/bgfx/.build/libbxDebug.a
-    ${CMAKE_SOURCE_DIR}/bgfx/.build/libbimgDebug.a
-    ${CMAKE_SOURCE_DIR}/bgfx/.build/libbimg_decodeDebug.a
-    ${CMAKE_SOURCE_DIR}/bgfx/.build/libbimg_encodeDebug.a
+    ${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin/libbgfxDebug.a
+    ${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin/libbxDebug.a
+    ${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin/libbimgDebug.a
+    ${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin/libbimg_decodeDebug.a
+    ${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin/libbimg_encodeDebug.a
     dl
 )
 
