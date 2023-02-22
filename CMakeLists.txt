@@ -13,6 +13,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD ${CMAKE_CXX_STANDARD})
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_${CMAKE_CXX_STANDARD})
 
+add_definitions(-DBX_CONFIG_DEBUG=1)
+
 target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:Clang>:-Wall -Wextra -Wc++20-compat-pedantic>
     $<$<CXX_COMPILER_ID:GNU>:-Wall -Wextra -pedantic>)
